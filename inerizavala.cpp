@@ -1,8 +1,10 @@
-#ifndef _irvin_h_
-#define _irvin_h_
 //Author: Irvin Neri
+//Source file for Space Shooter 7
 
-class Irvin{
-    private:
-        print("Irvin");
-};
+#include <iostream>
+using namespace std;
+
+int authName(){
+        cout << "Irvin";
+        return 0;
+}
