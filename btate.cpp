@@ -2,4 +2,4 @@
 
 using namespace std;
 
-cout << "Hello World!"};
+cout << "Hello World!";
