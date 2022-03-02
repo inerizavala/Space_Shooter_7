@@ -2,4 +2,7 @@
 
 using namespace std;
 
-cout << "Hello World!";
+int printName(){
+    cout << "Hello World!";
+    return 0;
+}
