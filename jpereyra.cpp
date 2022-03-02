@@ -7,9 +7,8 @@
 
 using namespace std;
 
-int main() {
-    cout << "Nothing to see here yet! Come back later. Code in progress . . .\n";
+int jpereyra() {
+    cout << "Nothing to see here yet! Come back later. Code in progress . . .";
 
     return 0;
-
 }
