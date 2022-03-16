@@ -20,7 +20,7 @@ typedef Flt	Matrix[4][4];
 #define ABS(a) (((a)<0)?(-(a)):(a))
 #define SGN(a) (((a)<0)?(-1):(1))
 #define SGND(a) (((a)<0.0)?(-1.0):(1.0))
-
+/*
 typedef struct t_rect {
 	int left;
 	int top;
@@ -32,7 +32,7 @@ typedef struct t_rect {
 	int centerx;
 	int centery;
 } Rect;
-
+*/
 typedef struct t_mouse {
 	int x,y;
 	int lastx,lasty;
@@ -56,6 +56,7 @@ typedef struct t_texmap {
 	unsigned int *i;
 } Texmap;
 
+/*
 typedef struct t_screen {
 	int x_res, y_res;
 	int screen_x_res, screen_y_res;
@@ -63,7 +64,7 @@ typedef struct t_screen {
 	Flt xcenter, ycenter;
 	Flt fy_res, fx_res;
 } Screen;
-
+*/
 #define MAX_LIGHTS (4)
 typedef struct t_lights {
 	int onoff;
