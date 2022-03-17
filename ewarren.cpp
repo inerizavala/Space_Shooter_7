@@ -24,6 +24,10 @@ void Credits::showPage(int xres,int yres) {
 	r.left = xres / 2;
 	r.center = 1;
 	ggprint16(&r, 16, 0x00ffffff, "CREDITS:");
+	ggprint8b(&r, 16, 0x00ffffff, "BRADLEY TATE");
+	ggprint8b(&r, 16, 0x00ffffff, "EVAN WARREN");
+	ggprint8b(&r, 16, 0x00ffffff, "IRVIN NERI");
+	ggprint8b(&r, 16, 0x00ffffff, "JULIAN PEREYRA");
 
 
 
