@@ -24,6 +24,7 @@
 
 #include "group.h"
 
+Credits credits;
 
 //defined types
 //typedef float Flt;
@@ -521,6 +522,9 @@ int check_keys(XEvent *e)
 			break;
 		case XK_s:
 			break;
+		case XK_c:
+			credits.credit_flag = !credits.credit_flag;
+			break;
 		case XK_Down:
 			break;
 		case XK_equal:
@@ -799,9 +803,15 @@ void render()
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
+	if (!credits.credit_flag){
 	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+	}
+	if (credits.credit_flag){
+		credits.showPage(gl.xres,gl.yres);
+		return;
+	}
 	//-------------------------------------------------------------------------
 	//Draw the ship
 	glColor3fv(g.ship.color);

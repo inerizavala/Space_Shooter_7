@@ -1,5 +1,6 @@
 #include "defs.h"
 
+
 #ifndef group_h_
 #define group_h_
 
@@ -16,10 +17,8 @@ class Enemy {
 
 class Credits {
 	public:
-		void showPage() {
-			
-
-		}
+		int credit_flag = 0;
+		void showPage(int xres, int yres);
 };
 
 #endif
