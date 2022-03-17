@@ -5,11 +5,13 @@
 //#include <GL/glx.h>
 #include "defs.h"
 #include "group.h"
-extern class Enemy en;
+
+
+
 
 Enemy::Enemy() {
-	pos[0] = (Flt)(gl.xres/2);
-	pos[1] = (Flt)(gl.yres/2);
+	pos[0] = 0.0f;	//(Flt)(gl.xres/2);
+	pos[1] = 0.0f;	//(Flt)(gl.yres/2);
 	pos[2] = 0.0f;
 	VecZero(dir);
 	VecZero(vel);

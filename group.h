@@ -14,5 +14,12 @@ class Enemy {
 		  Enemy();
   };
 
+class Credits {
+	public:
+		void showPage() {
+			
+
+		}
+};
 
 #endif
