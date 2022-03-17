@@ -20,14 +20,14 @@ Enemy::Enemy() {
 
 void Credits::showPage(int xres,int yres) {
 	Rect r;
-	r.bot = yres - 20;
-	r.left = 5;
-	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "CREDITS:");
+	r.bot = yres - 50;
+	r.left = xres / 2;
+	r.center = 1;
+	ggprint16(&r, 16, 0x00ffffff, "CREDITS:");
 
 
 
-	/* 
+	/* //makes a yellow triangle 
 	glColor3ub(255,255,0);
          glPushMatrix();
          //glTranslatef(g.ship.pos[0], g.ship.pos[1], g.ship.pos[2]);
