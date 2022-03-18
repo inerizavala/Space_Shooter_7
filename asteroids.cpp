@@ -25,6 +25,7 @@
 #include "group.h"
 
 Credits credits;
+Movement movement;
 
 //defined types
 //typedef float Flt;
@@ -398,10 +399,10 @@ void check_mouse(XEvent *e)
 {
 	//Did the mouse move?
 	//Was a mouse button clicked?
-	static int savex = 0;
-	static int savey = 0;
+	//static int savex = 0;
+	//static int savey = 0;
 	//
-	static int ct=0;
+	//static int ct=0;
 	//std::cout << "m" << std::endl << std::flush;
 	if (e->type == ButtonRelease) {
 		return;
@@ -444,6 +445,7 @@ void check_mouse(XEvent *e)
 		}
 	}
 	//keys[XK_Up] = 0;
+	/*
 	if (savex != e->xbutton.x || savey != e->xbutton.y) {
 		//Mouse moved
 		int xdiff = savex - e->xbutton.x;
@@ -489,6 +491,7 @@ void check_mouse(XEvent *e)
 		savex = 100;
 		savey = 100;
 	}
+	*/
 }
 
 int check_keys(XEvent *e)
@@ -725,32 +728,16 @@ void physics()
 	//---------------------------------------------------
 	//check keys pressed now
 	if (gl.keys[XK_Left]) {
-		g.ship.angle += 4.0;
-		if (g.ship.angle >= 360.0f)
-			g.ship.angle -= 360.0f;
+		movement.moveLeft(g.ship.angle, g.ship.vel);
 	}
 	if (gl.keys[XK_Right]) {
-		g.ship.angle -= 4.0;
-		if (g.ship.angle < 0.0f)
-			g.ship.angle += 360.0f;
+		movement.moveRight(g.ship.angle, g.ship.vel);
 	}
 	if (gl.keys[XK_Up]) {
-		//apply thrust
-		//convert ship angle to radians
-		Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt xdir = cos(rad);
-		Flt ydir = sin(rad);
-		g.ship.vel[0] += xdir*0.02f;
-		g.ship.vel[1] += ydir*0.02f;
-		Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
-				g.ship.vel[1]*g.ship.vel[1]);
-		if (speed > 10.0f) {
-			speed = 10.0f;
-			normalize2d(g.ship.vel);
-			g.ship.vel[0] *= speed;
-			g.ship.vel[1] *= speed;
-		}
+		movement.moveUp(g.ship.angle, g.ship.vel);
+	}
+	if (gl.keys[XK_Down]) {
+		movement.moveDown(g.ship.angle, g.ship.vel);
 	}
 	if (gl.keys[XK_space]) {
 		//a little time between each bullet
@@ -784,6 +771,7 @@ void physics()
 			}
 		}
 	}
+	
 	if (g.mouseThrustOn) {
 		//should thrust be turned off
 		struct timespec mtt;
@@ -793,6 +781,7 @@ void physics()
 		if (tdif < -0.3)
 			g.mouseThrustOn = false;
 	}
+	
 }
 
 void render()
