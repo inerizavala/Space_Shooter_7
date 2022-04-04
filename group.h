@@ -30,5 +30,13 @@ class Movement {
 
 };
 
-
+class Menu {
+    public:
+        int credits_flag = 0;
+        int menu_flag = 0;
+        int help_flag = 0;
+        void showCredits(int xres, int yres);
+        void showMenu(int xres, int yres);
+        void showHelp(int xres, int yres);
+};
 #endif
