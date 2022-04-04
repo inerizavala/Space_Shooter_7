@@ -27,7 +27,7 @@
 Credits credits;
 Movement movement;
 Menu menu;
-
+inerizavala inerizavala;
 //defined types
 //typedef float Flt;
 //typedef float Vec[3];
@@ -325,6 +325,7 @@ void check_mouse(XEvent *e);
 int check_keys(XEvent *e);
 void physics();
 void render();
+void itest();
 
 //==========================================================================
 // M A I N
@@ -337,7 +338,8 @@ int main()
 	clock_gettime(CLOCK_REALTIME, &timePause);
 	clock_gettime(CLOCK_REALTIME, &timeStart);
 	x11.set_mouse_position(100,100);
-	int done = 0;
+    int in_t = 0;
+    int done = 0;
 	while (!done) {                                   //GAMEPLAY LOOP
 		while (x11.getXPending()) {
 			XEvent e = x11.getXNextEvent();
@@ -353,12 +355,22 @@ int main()
 			physics();
 			physicsCountdown -= physicsRate;
 		}
+        if(in_t == 0){
+            itest();
+            in_t++;
+        }
 		render();
 		x11.swapBuffers();
 	}
 	cleanup_fonts();
 	logClose();
 	return 0;
+}
+void itest(){
+    int testI;
+    printf("Enter integer: ");
+    std::cin >> testI;
+    printf("\n");
 }
 
 void init_opengl(void)
