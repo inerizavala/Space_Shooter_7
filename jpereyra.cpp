@@ -23,6 +23,19 @@
 
 using namespace std;
 
+void OceanicPianoMan(int argc) {
+    if (argc >= 1) {
+        cout << "\nERROR: Need a command line argument!";
+        cout << "Example: ./ss7 <command>";
+    } else {
+        cout << "Succesfully entered a command!" << endl;    
+    }
+
+
+};
+
+
+
 void Movement::moveLeft(int angle, Vec vel) {
 		//apply thrust
 		//convert ship angle to radians

@@ -45,3 +45,13 @@ void Credits::showPage(int xres,int yres) {
          glPopMatrix();
 	 */
 }
+
+void ewarrenFunction(int number) 
+{
+    if (number % 2) {
+        std::cout << number << " is odd.\n";
+    }
+    else {
+        std::cout << number << " is even.\n";
+    }
+}
