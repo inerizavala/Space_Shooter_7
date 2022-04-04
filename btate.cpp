@@ -52,3 +52,13 @@ void Menu::showHelp(int xres, int yres) {
 	ggprint8b(&r, 16, 0x00ffffff, "H - Return to Menu");
 
 }
+
+int btate(bool testValue) {
+    int end = 0;
+    if (testValue == true) 
+        end = 1;
+    else 
+        cout << "The value was not true, 1 is not returned and the game continues." << endl;
+    return end;                      //The return of 1 would end the game with the done variable in main when implemented and called
+}
+
