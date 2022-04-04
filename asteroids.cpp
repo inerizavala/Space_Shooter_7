@@ -26,6 +26,7 @@
 
 Credits credits;
 Movement movement;
+Menu menu;
 
 //defined types
 //typedef float Flt;
@@ -336,8 +337,8 @@ int main()
 	clock_gettime(CLOCK_REALTIME, &timePause);
 	clock_gettime(CLOCK_REALTIME, &timeStart);
 	x11.set_mouse_position(100,100);
-	int done=0;
-	while (!done) {
+	int done = 0;
+	while (!done) {                                   //GAMEPLAY LOOP
 		while (x11.getXPending()) {
 			XEvent e = x11.getXNextEvent();
 			x11.check_resize(&e);
@@ -524,9 +525,13 @@ int check_keys(XEvent *e)
 		case XK_f:
 			break;
 		case XK_s:
+			menu.menu_flag = !menu.menu_flag;
 			break;
 		case XK_c:
-			credits.credit_flag = !credits.credit_flag;
+			menu.credits_flag = !menu.credits_flag;
+			break;
+		case XK_h:
+			menu.help_flag = !menu.help_flag;
 			break;
 		case XK_Down:
 			break;
@@ -786,22 +791,37 @@ void physics()
 
 void render()
 {
+	if (menu.credits_flag){
+		glClear(GL_COLOR_BUFFER_BIT);
+		menu.showCredits(gl.xres,gl.yres);
+	}
+
+	if (menu.help_flag){
+		glClear(GL_COLOR_BUFFER_BIT);
+		menu.showHelp(gl.xres, gl.yres);
+		
+	}
+	
+	if (!menu.credits_flag && !menu.help_flag) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		menu.showMenu(gl.xres, gl.yres);
+	}
+
+	if (menu.menu_flag) {                                    //Game starts once player has pressed "s"
+	//-------------------------------------------------------------------------
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
-	//
+	
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	if (!credits.credit_flag){
+	
+	if (!menu.credits_flag){
 	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 	}
-	if (credits.credit_flag){
-		credits.showPage(gl.xres,gl.yres);
-		return;
-	}
-	//-------------------------------------------------------------------------
+
 	//Draw the ship
 	glColor3fv(g.ship.color);
 	glPushMatrix();
@@ -892,6 +912,7 @@ void render()
 		glVertex2f(b->pos[0]+1.0f, b->pos[1]+1.0f);
 		glEnd();
 	}
+}
 }
 
 
