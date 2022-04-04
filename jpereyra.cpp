@@ -23,7 +23,7 @@
 
 using namespace std;
 
-void OceanicPianoMan(int argc) {
+void jpereyraFunction(int argc) {
     if (argc >= 1) {
         cout << "\nERROR: Need a command line argument!";
         cout << "Example: ./ss7 <command>";
