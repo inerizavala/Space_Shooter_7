@@ -27,7 +27,7 @@
 Credits credits;
 Movement movement;
 Menu menu;
-inerizavala inerizavala;
+//inerizavala inerizavala;
 //defined types
 //typedef float Flt;
 //typedef float Vec[3];
