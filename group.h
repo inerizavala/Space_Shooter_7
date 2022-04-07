@@ -40,4 +40,8 @@ class Menu {
         void showHelp(int xres, int yres);
         void btate(int creditsFlag, int helpFlag, int menuFlag);
 };
+
+int ewarrenFunction2(int num);
+
+void jpereyraFunction2(int score);
 #endif

@@ -27,7 +27,7 @@
 Credits credits;
 Movement movement;
 Menu menu;
-inerizavala inerizavala;
+//inerizavala inerizavala;
 //defined types
 //typedef float Flt;
 //typedef float Vec[3];
@@ -829,6 +829,9 @@ void render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	r.bot = gl.yres - 20;
+    	if (ewarrenFunction2(r.bot)) { //ew midterm
+        	r.bot = 0;
+    	} 
 	r.left = 10;
 	r.center = 0;
 	
