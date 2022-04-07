@@ -43,5 +43,5 @@ class Menu {
 
 int ewarrenFunction2(int num);
 
-void jpereyraFunction2(int score);
+int jpereyraFunctionTwo(int bullets);
 #endif
