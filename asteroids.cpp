@@ -27,7 +27,7 @@
 Credits credits;
 Movement movement;
 Menu menu;
-inerizavala inerizavala;
+//Test test;
 //defined types
 //typedef float Flt;
 //typedef float Vec[3];
@@ -338,7 +338,6 @@ int main()
 	clock_gettime(CLOCK_REALTIME, &timePause);
 	clock_gettime(CLOCK_REALTIME, &timeStart);
 	x11.set_mouse_position(100,100);
-    int in_t = 0;
     int done = 0;
 	while (!done) {                                   //GAMEPLAY LOOP
 		while (x11.getXPending()) {
@@ -355,22 +354,12 @@ int main()
 			physics();
 			physicsCountdown -= physicsRate;
 		}
-        if(in_t == 0){
-            itest();
-            in_t++;
-        }
 		render();
 		x11.swapBuffers();
 	}
 	cleanup_fonts();
 	logClose();
 	return 0;
-}
-void itest(){
-    int testI;
-    printf("Enter integer: ");
-    std::cin >> testI;
-    printf("\n");
 }
 
 void init_opengl(void)
@@ -627,6 +616,8 @@ void physics()
 	else if (g.ship.pos[1] > (float)gl.yres) {
 		g.ship.pos[1] -= (float)gl.yres;
 	}
+    //checks if ship position is in the middle
+    shipPos(g.ship.pos[0], g.ship.pos[1], gl.xres, gl.yres);
 	//
 	//
 	//Update bullet positions

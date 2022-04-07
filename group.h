@@ -39,4 +39,13 @@ class Menu {
         void showMenu(int xres, int yres);
         void showHelp(int xres, int yres);
 };
+
+void shipPos(double spos0, double spos1, int xres, int yres);
+/*
+class Test {
+    public:
+        void shipPos(double spos0, double spos2, int xres, int yres);
+};
+*/
+
 #endif
