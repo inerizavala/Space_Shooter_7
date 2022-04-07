@@ -12,7 +12,8 @@
 
 using namespace std;
 
-void Menu::showMenu(int xres, int yres) {
+void Menu::showMenu(int xres, int yres) 
+{
 	Rect r;
 	r.bot = yres - 50;
 	r.left = xres / 2;
@@ -23,7 +24,8 @@ void Menu::showMenu(int xres, int yres) {
 	ggprint8b(&r, 16, 0x00800000, "C - Credits");
 }
 
-void Menu::showCredits(int xres, int yres) {
+void Menu::showCredits(int xres, int yres) 
+{
 	Rect r;
 	r.bot = yres - 50;
 	r.left = xres / 2;
@@ -39,7 +41,8 @@ void Menu::showCredits(int xres, int yres) {
 
 }
 
-void Menu::showHelp(int xres, int yres) {
+void Menu::showHelp(int xres, int yres) 
+{
 	Rect r;
 	r.bot = yres - 50;
 	r.left = xres / 2;
@@ -53,12 +56,13 @@ void Menu::showHelp(int xres, int yres) {
 
 }
 
-int btate(bool testValue) {
-    int end = 0;
-    if (testValue == true) 
-        end = 1;
-    else 
-        cout << "The value was not true, 1 is not returned and the game continues." << endl;
-    return end;                      //The return of 1 would end the game with the done variable in main when implemented and called
+void Menu::btate(int creditsFlag, int helpFlag, int menuFlag) 
+{
+    if (creditsFlag == 1)
+        cout << "Credits flag has been set" << endl;
+    if (helpFlag == 1)
+        cout << "Help flag has been set" << endl;
+    if (menuFlag == 1)
+        cout << "Menu flag has been set" << endl;
 }
 

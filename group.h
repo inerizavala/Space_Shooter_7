@@ -38,14 +38,13 @@ class Menu {
         void showCredits(int xres, int yres);
         void showMenu(int xres, int yres);
         void showHelp(int xres, int yres);
+        void btate(int creditsFlag, int helpFlag, int menuFlag);
 };
 
 void shipPos(double spos0, double spos1, int xres, int yres);
-/*
-class Test {
-    public:
-        void shipPos(double spos0, double spos2, int xres, int yres);
-};
-*/
+
+int ewarrenFunction2(int num);
+
+int jpereyraFunctionTwo(int bullets);
 
 #endif

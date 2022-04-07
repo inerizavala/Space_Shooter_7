@@ -28,6 +28,7 @@ Credits credits;
 Movement movement;
 Menu menu;
 //Test test;
+//inerizavala inerizavala;
 //defined types
 //typedef float Flt;
 //typedef float Vec[3];
@@ -797,25 +798,32 @@ void render()
 	if (menu.credits_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showCredits(gl.xres,gl.yres);
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.help_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showHelp(gl.xres, gl.yres);
-		
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 	
 	if (!menu.credits_flag && !menu.help_flag) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showMenu(gl.xres, gl.yres);
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.menu_flag) {                                    //Game starts once player has pressed "s"
 	//-------------------------------------------------------------------------
+    menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
+
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	r.bot = gl.yres - 20;
+    	if (ewarrenFunction2(r.bot)) { //ew midterm
+        	r.bot = 0;
+    	} 
 	r.left = 10;
 	r.center = 0;
 	
@@ -824,6 +832,10 @@ void render()
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 	}
+
+    if (g.nbullets >= 7) {
+        jpereyraFunctionTwo(g.nbullets);
+    }
 
 	//Draw the ship
 	glColor3fv(g.ship.color);
