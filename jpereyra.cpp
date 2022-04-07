@@ -23,20 +23,20 @@
 
 using namespace std;
 
-void jpereyraFunction(int argc) {
+void jpereyraFunction(int argc) 
+{
     if (argc >= 1) {
         cout << "\nERROR: Need a command line argument!";
         cout << "Example: ./ss7 <command>";
     } else {
         cout << "Succesfully entered a command!" << endl;    
     }
-
-
 };
 
 
 
-void Movement::moveLeft(int angle, Vec vel) {
+void Movement::moveLeft(int angle, Vec vel) 
+{
 		//apply thrust
 		//convert ship angle to radians
 		Flt rad = ((angle+180.0) / 360.0f) * PI * 2.0;
@@ -56,7 +56,8 @@ void Movement::moveLeft(int angle, Vec vel) {
 };
 
 
-void Movement::moveRight(int angle, Vec vel) {
+void Movement::moveRight(int angle, Vec vel) 
+{
 		//apply thrust
 		//convert ship angle to radians
 		Flt rad = ((angle+0.0) / 360.0f) * PI * 2.0;
@@ -76,7 +77,8 @@ void Movement::moveRight(int angle, Vec vel) {
 };
 
 
-void Movement::moveUp(int angle, Vec vel) {
+void Movement::moveUp(int angle, Vec vel) 
+{
 		//apply thrust
 		//convert ship angle to radians
 		Flt rad = ((angle+90.0) / 360.0f) * PI * 2.0;
@@ -96,7 +98,8 @@ void Movement::moveUp(int angle, Vec vel) {
 };
 
 
-void Movement::moveDown(int angle, Vec vel) {
+void Movement::moveDown(int angle, Vec vel) 
+{
 		//apply thrust
 		//convert ship angle to radians
 		Flt rad = ((angle+270.0) / 360.0f) * PI * 2.0;
