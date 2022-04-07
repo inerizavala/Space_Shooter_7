@@ -806,21 +806,25 @@ void render()
 	if (menu.credits_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showCredits(gl.xres,gl.yres);
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.help_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showHelp(gl.xres, gl.yres);
-		
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 	
 	if (!menu.credits_flag && !menu.help_flag) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showMenu(gl.xres, gl.yres);
+        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.menu_flag) {                                    //Game starts once player has pressed "s"
 	//-------------------------------------------------------------------------
+    menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
+
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
 	
