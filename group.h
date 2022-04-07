@@ -39,4 +39,6 @@ class Menu {
         void showMenu(int xres, int yres);
         void showHelp(int xres, int yres);
 };
+
+int ewarrenFunction2(int num);
 #endif
