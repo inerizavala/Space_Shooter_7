@@ -42,9 +42,5 @@ class Menu {
 
 int ewarrenFunction2(int num);
 
-class Passing {
-    public:
-        int score = 4;
-        void jpereyraFunction2(int score);
-};
+void jpereyraFunction2(int score);
 #endif
