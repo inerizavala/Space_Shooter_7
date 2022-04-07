@@ -33,6 +33,17 @@ void jpereyraFunction(int argc)
     }
 };
 
+void jpereyraFunctionTwo(int score)
+{
+    if (score >= 7 || score <= 10) {
+        cout << "\nCongrats! You passed!" << endl;
+        cout << "You got at least a C+" << endl;
+    } else {
+        cout << "Darn, you failed." << endl;
+        cout << "Study for next time! Here are some resources..." << endl;
+    }
+};
+
 
 
 void Movement::moveLeft(int angle, Vec vel) 
