@@ -33,15 +33,14 @@ void jpereyraFunction(int argc)
     }
 };
 
-void jpereyraFunctionTwo(int score)
+int jpereyraFunctionTwo(int bullets)
 {
-    if (score >= 7 || score <= 10) {
-        cout << "\nCongrats! You passed!" << endl;
-        cout << "You got at least a C+" << endl;
+    if (bullets >= 7 || bullets <= 11) {
+        cout << "\nThats a lot of bulelts!" << endl;
     } else {
-        cout << "Darn, you failed." << endl;
-        cout << "Study for next time! Here are some resources..." << endl;
+        cout << "Not enough bullets!" << endl;
     }
+    return 0;
 };
 
 
