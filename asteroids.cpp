@@ -841,6 +841,10 @@ void render()
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 	}
 
+    if (g.nbullets >= 7) {
+        jpereyraFunctionTwo(g.nbullets);
+    }
+
 	//Draw the ship
 	glColor3fv(g.ship.color);
 	glPushMatrix();
