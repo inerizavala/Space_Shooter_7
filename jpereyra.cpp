@@ -2,7 +2,6 @@
 //Source file for Space Shooter 7
 //Start Date: February 24th
 //End Date: TBD
-//
 
 #include <stdio.h>
 #include <string.h>
@@ -22,27 +21,6 @@
 #define PI 3.141592653589793
 
 using namespace std;
-
-void jpereyraFunction(int argc) 
-{
-    if (argc >= 1) {
-        cout << "\nERROR: Need a command line argument!";
-        cout << "Example: ./ss7 <command>";
-    } else {
-        cout << "Succesfully entered a command!" << endl;    
-    }
-};
-
-int jpereyraFunctionTwo(int bullets)
-{
-    if (bullets >= 7 || bullets <= 11) {
-        cout << "\nThats a lot of bulelts!" << endl;
-    } else {
-        cout << "Not enough bullets!" << endl;
-    }
-    return 0;
-};
-
 
 
 void Movement::moveLeft(int angle, Vec vel) 
@@ -127,3 +105,25 @@ void Movement::moveDown(int angle, Vec vel)
 			vel[1] *= speed;
 		}
 };
+
+/*
+void jpereyraFunction(int argc) 
+{
+    if (argc >= 1) {
+        cout << "\nERROR: Need a command line argument!";
+        cout << "Example: ./ss7 <command>";
+    } else {
+        cout << "Succesfully entered a command!" << endl;    
+    }
+};
+
+int jpereyraFunctionTwo(int bullets)
+{
+    if (bullets >= 7 || bullets <= 11) {
+        cout << "\nThats a lot of bulelts!" << endl;
+    } else {
+        cout << "Not enough bullets!" << endl;
+    }
+    return 0;
+};
+*/
