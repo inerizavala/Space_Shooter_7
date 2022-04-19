@@ -1,6 +1,5 @@
 #include "defs.h"
 
-
 #ifndef group_h_
 #define group_h_
 
@@ -41,10 +40,18 @@ class Menu {
         void btate(int creditsFlag, int helpFlag, int menuFlag);
 };
 
+class Score {
+	public:
+		int score_flag = 0;
+		int score = 0;
+		void increaseScore(int num);
+};
+
 void shipPos(double spos0, double spos1, int xres, int yres);
 
 int ewarrenFunction2(int num);
 
 int jpereyraFunctionTwo(int bullets);
+
 
 #endif

@@ -27,6 +27,7 @@
 Credits credits;
 Movement movement;
 Menu menu;
+Score score;
 //Test test;
 //inerizavala inerizavala;
 //defined types
@@ -535,6 +536,8 @@ int check_keys(XEvent *e)
 		case XK_h:
 			menu.help_flag = !menu.help_flag;
 			break;
+		case XK_n:
+			break;
 		case XK_Down:
 			break;
 		case XK_equal:
@@ -721,6 +724,8 @@ void physics()
 					//break it into pieces.
 					Asteroid *ta = a;
 					buildAsteroidFragment(ta, a);
+					score.increaseScore(25); //ew
+					//increase score by 25 when breaking asteroid apart
 					int r = rand()%10+5;
 					for (int k=0; k<r; k++) {
 						//get the next asteroid position in the array
@@ -741,6 +746,8 @@ void physics()
 					//delete the asteroid and bullet
 					Asteroid *savea = a->next;
 					deleteAsteroid(&g, a);
+					score.increaseScore(50); //ew
+					//increase score by 50 when asteroid fully destroyed
 					a = savea;
 					g.nasteroids--;
 				}
@@ -850,10 +857,15 @@ void render()
 	r.left = 10;
 	r.center = 0;
 	
-	if (!menu.credits_flag){
+	if (!menu.credits_flag) {
 	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
-	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
-	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+	ggprint8b(&r, 16, 0x00ff0000, "BULLETS: %i", g.nbullets);
+	ggprint8b(&r, 16, 0x00ff0000, "ASTEROIDS: %i", g.nasteroids);
+	if (!score.score_flag) { //ew
+		ggprint8b(&r, 16, 0x00ff0000, "SCORE: %i", score.score);
+	}else {
+		ggprint8b(&r, 16, 0x00ffff00, "SCORE: %i", score.score);
+	}
 	}
 
 	//Draw the ship

@@ -31,37 +31,44 @@ void Credits::showPage(int xres, int yres)
 	ggprint8b(&r, 16, 0x00ffffff, "IRVIN NERI");
 	ggprint8b(&r, 16, 0x00ffffff, "JULIAN PEREYRA");
 
-
-
-	/* //makes a yellow triangle 
-	 * glColor3ub(255,255,0);
-     * glPushMatrix();
-     * //glTranslatef(g.ship.pos[0], g.ship.pos[1], g.ship.pos[2]);
-     * //float angle = atan2(ship.dir[1], ship.dir[0]);
-     * //glRotatef(g.ship.angle, 0.0f, 0.0f, 1.0f);
-     * glBegin(GL_TRIANGLES);
-     * glVertex2f(0.0f, 0.0f);
-     * glVertex2f(xres/2.0, yres);
-     * glVertex2f( xres, 0.0f);
-     * glEnd();
-     * glPopMatrix();
-	 */
+	 //makes a yellow triangle 
+	  glColor3ub(255,255,0);
+	  glPushMatrix();
+	  //glTranslatef(g.ship.pos[0], g.ship.pos[1], g.ship.pos[2]);
+	  //float angle = atan2(ship.dir[1], ship.dir[0]);
+	  //glRotatef(g.ship.angle, 0.0f, 0.0f, 1.0f);
+	  glBegin(GL_TRIANGLES);
+	  glVertex2f(0.0f, 0.0f);
+	  glVertex2f(xres/2.0, yres);
+	  glVertex2f( xres, 0.0f);
+	  glEnd();
+	  glPopMatrix();
+	 
 }
+
+void Score::increaseScore(int num)
+{
+	score = score + num;
+	score_flag = !score_flag;
+}
+
+//int NEW_MAX_BULLETS = 99;
+//int max_bullet_flag = 0;
 
 void ewarrenFunction(int number) 
 {
-    if (number % 2) {
-        std::cout << number << " is odd.\n";
-    } else {
-        std::cout << number << " is even.\n";
-    }
+	if (number % 2) {
+		std::cout << number << " is odd.\n";
+	} else {
+		std::cout << number << " is even.\n";
+	}
 }
 
 int ewarrenFunction2(int num)
 {
-    if (num < 0) {
-        return 1;
-    } else {
-        return 0;
-    }
+	if (num < 0) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
