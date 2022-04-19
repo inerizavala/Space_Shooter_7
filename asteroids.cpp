@@ -605,20 +605,26 @@ void physics()
 	g.ship.pos[0] += g.ship.vel[0];
 	g.ship.pos[1] += g.ship.vel[1];
 	//Check for collision with window edges
+  //updated by JP, prevents the ship from teleporting to the respective
+  //side of the screen
 	if (g.ship.pos[0] < 0.0) {
-		g.ship.pos[0] += (float)gl.xres;
+		g.ship.pos[0] = 0.0;
+    g.ship.vel[0] = 0;
 	}
 	else if (g.ship.pos[0] > (float)gl.xres) {
-		g.ship.pos[0] -= (float)gl.xres;
+		g.ship.pos[0] = (float)gl.xres;
+    g.ship.vel[0] = 0;
 	}
-	else if (g.ship.pos[1] < 0.0) {
-		g.ship.pos[1] += (float)gl.yres;
+	else if (g.ship.pos[1] < 0.0) { //right of screen
+		g.ship.pos[1] = 0.0;
+    g.ship.vel[1] = 0;   
 	}
-	else if (g.ship.pos[1] > (float)gl.yres) {
-		g.ship.pos[1] -= (float)gl.yres;
+	else if (g.ship.pos[1] > (float)gl.yres) { //top of screen
+		g.ship.pos[1] = (float)gl.yres;
+    g.ship.vel[1] = 0;    
 	}
     //checks if ship position is in the middle
-    shipPos(g.ship.pos[0], g.ship.pos[1], gl.xres, gl.yres);
+    //shipPos(g.ship.pos[0], g.ship.pos[1], gl.xres, gl.yres);
 	//
 	//
 	//Update bullet positions
@@ -641,17 +647,33 @@ void physics()
 		b->pos[0] += b->vel[0];
 		b->pos[1] += b->vel[1];
 		//Check for collision with window edges
+    //JP: same update as before, prevents the bullets from
+    //teleporting to the respective side of the screen
+    //Also added code to delete the bullets when they touch
+    //the sides of the screen 
 		if (b->pos[0] < 0.0) {
-			b->pos[0] += (float)gl.xres;
+			b->pos[0] = 0.0;
+      memcpy(&g.barr[i], &g.barr[g.nbullets-1],
+				sizeof(Bullet));
+			g.nbullets--;
 		}
 		else if (b->pos[0] > (float)gl.xres) {
-			b->pos[0] -= (float)gl.xres;
+			b->pos[0] = (float)gl.xres;
+      memcpy(&g.barr[i], &g.barr[g.nbullets-1],
+				sizeof(Bullet));
+			g.nbullets--;
 		}
 		else if (b->pos[1] < 0.0) {
-			b->pos[1] += (float)gl.yres;
+			b->pos[1] = 0.0;
+      memcpy(&g.barr[i], &g.barr[g.nbullets-1],
+				sizeof(Bullet));
+			g.nbullets--;
 		}
 		else if (b->pos[1] > (float)gl.yres) {
-			b->pos[1] -= (float)gl.yres;
+			b->pos[1] = (float)gl.yres;
+      memcpy(&g.barr[i], &g.barr[g.nbullets-1],
+				sizeof(Bullet));
+			g.nbullets--;
 		}
 		++i;
 	}
@@ -817,6 +839,7 @@ void render()
 	//-------------------------------------------------------------------------
     menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 
+
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -832,10 +855,6 @@ void render()
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 	}
-
-    if (g.nbullets >= 7) {
-        jpereyraFunctionTwo(g.nbullets);
-    }
 
 	//Draw the ship
 	glColor3fv(g.ship.color);
@@ -929,6 +948,7 @@ void render()
 	}
 }
 }
+
 
 
 
