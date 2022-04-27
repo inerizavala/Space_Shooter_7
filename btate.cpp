@@ -56,6 +56,7 @@ void Menu::showHelp(int xres, int yres)
 
 }
 
+
 void Menu::btate(int creditsFlag, int helpFlag, int menuFlag) 
 {
     if (creditsFlag == 1)
@@ -65,4 +66,5 @@ void Menu::btate(int creditsFlag, int helpFlag, int menuFlag)
     if (menuFlag == 1)
         cout << "Menu flag has been set" << endl;
 }
+
 

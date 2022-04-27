@@ -22,7 +22,6 @@
 
 using namespace std;
 
-
 void Movement::moveLeft(int angle, Vec vel) 
 {
 		//apply thrust
@@ -31,13 +30,12 @@ void Movement::moveLeft(int angle, Vec vel)
 		//convert angle to a vector
 		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.1f;
-		vel[1] += ydir*0.1f;
+		vel[0] += xdir*0.2f;
+		vel[1] += ydir*0.2f;
 		Flt speed = sqrt(vel[0]*vel[0]+
 				vel[1]*vel[1]);
 		if (speed > 1.0f) {
 			speed = 1.0f;
-			//normalize2d(g.ship.vel);
 			vel[0] *= speed;
 			vel[1] *= speed;
 		}
@@ -52,13 +50,12 @@ void Movement::moveRight(int angle, Vec vel)
 		//convert angle to a vector
 		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.1f;
-		vel[1] += ydir*0.1f;
+		vel[0] += xdir*0.2f;
+		vel[1] += ydir*0.2f;
 		Flt speed = sqrt(vel[0]*vel[0]+
 				vel[1]*vel[1]);
 		if (speed > 1.0f) {
 			speed = 1.0f;
-			//normalize2d(g.ship.vel);
 			vel[0] *= speed;
 			vel[1] *= speed;
 		}
@@ -73,13 +70,12 @@ void Movement::moveUp(int angle, Vec vel)
 		//convert angle to a vector
 		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.1f;
-		vel[1] += ydir*0.1f;
+		vel[0] += xdir*0.2f;
+		vel[1] += ydir*0.2f;
 		Flt speed = sqrt(vel[0]*vel[0]+
 				vel[1]*vel[1]);
 		if (speed > 1.0f) {
 			speed = 1.0f;
-			//normalize2d(g.ship.vel);
 			vel[0] *= speed;
 			vel[1] *= speed;
 		}
@@ -94,13 +90,12 @@ void Movement::moveDown(int angle, Vec vel)
 		//convert angle to a vector
 		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.1f;
-		vel[1] += ydir*0.1f;
+		vel[0] += xdir*0.2f;
+		vel[1] += ydir*0.2f;
 		Flt speed = sqrt(vel[0]*vel[0]+
 				vel[1]*vel[1]);
 		if (speed > 1.0f) {
 			speed = 1.0f;
-			//normalize2d(g.ship.vel);
 			vel[0] *= speed;
 			vel[1] *= speed;
 		}
@@ -116,7 +111,6 @@ void jpereyraFunction(int argc)
         cout << "Succesfully entered a command!" << endl;    
     }
 };
-
 int jpereyraFunctionTwo(int bullets)
 {
     if (bullets >= 7 || bullets <= 11) {

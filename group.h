@@ -45,6 +45,7 @@ class Score {
 		int score_flag = 0;
 		int score = 0;
 		void increaseScore(int num);
+    void changeShipColor(int score);
 };
 
 void shipPos(double spos0, double spos1, int xres, int yres);

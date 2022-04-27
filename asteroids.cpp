@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <ctime>
 #include <cmath>
+#include <unistd.h>
 #include <X11/Xlib.h>
 //#include <X11/Xutil.h>
 //#include <GL/gl.h>
@@ -101,7 +102,10 @@ public:
 		VecZero(vel);
 		VecZero(acc);
 		angle = 0.0;
-		color[0] = color[1] = color[2] = 1.0;
+		color[0] = 1.0;
+    color[1] = 1.0;
+    color[2] = 1.0;
+    //color[1] = color[2] = 1.0;
 	}
 };
 
@@ -726,6 +730,7 @@ void physics()
 					buildAsteroidFragment(ta, a);
 					score.increaseScore(25); //ew
 					//increase score by 25 when breaking asteroid apart
+          //score.changeShipColor(score.score); 
 					int r = rand()%10+5;
 					for (int k=0; k<r; k++) {
 						//get the next asteroid position in the array
@@ -748,6 +753,7 @@ void physics()
 					deleteAsteroid(&g, a);
 					score.increaseScore(50); //ew
 					//increase score by 50 when asteroid fully destroyed
+          //score.changeShipColor(score.score);    
 					a = savea;
 					g.nasteroids--;
 				}
@@ -777,7 +783,7 @@ void physics()
 	if (gl.keys[XK_Down]) {
 		movement.moveDown(g.ship.angle, g.ship.vel);
 	}
-	if (gl.keys[XK_space]) {
+  if (gl.keys[XK_space]) {
 		//a little time between each bullet
 		struct timespec bt;
 		clock_gettime(CLOCK_REALTIME, &bt);
@@ -827,25 +833,24 @@ void render()
 	if (menu.credits_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showCredits(gl.xres,gl.yres);
-        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
+        //menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.help_flag){
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showHelp(gl.xres, gl.yres);
-        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
+        //menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 	
 	if (!menu.credits_flag && !menu.help_flag) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		menu.showMenu(gl.xres, gl.yres);
-        menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
+        //menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 	}
 
 	if (menu.menu_flag) {                                    //Game starts once player has pressed "s"
 	//-------------------------------------------------------------------------
-    menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
-
+    //menu.btate(menu.credits_flag, menu.help_flag, menu.menu_flag);
 
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -854,10 +859,10 @@ void render()
     	if (ewarrenFunction2(r.bot)) { //ew midterm
         	r.bot = 0;
     	} 
-	r.left = 10;
-	r.center = 0;
-	
+     
 	if (!menu.credits_flag) {
+  r.left = 10;
+	r.center = 0;
 	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
 	ggprint8b(&r, 16, 0x00ff0000, "BULLETS: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ff0000, "ASTEROIDS: %i", g.nasteroids);
@@ -867,9 +872,54 @@ void render()
 		ggprint8b(&r, 16, 0x00ffff00, "SCORE: %i", score.score);
 	}
 	}
-
-	//Draw the ship
-	glColor3fv(g.ship.color);
+	//-------------------------------------------------------------------------
+	//Draw the asteroids
+	{
+		Asteroid *a = g.ahead;
+		while (a) {
+			//Log("draw asteroid...\n");
+			glColor3fv(a->color);
+			glPushMatrix();
+			glTranslatef(a->pos[0], a->pos[1], a->pos[2]);
+			glRotatef(a->angle, 0.0f, 0.0f, 1.0f);
+			glBegin(GL_LINE_LOOP);
+			//Log("%i verts\n",a->nverts);
+			for (int j=0; j<a->nverts; j++) {
+				glVertex2f(a->vert[j][0], a->vert[j][1]);
+			}
+			glEnd();
+			//glBegin(GL_LINES);
+			//	glVertex2f(0,   0);
+			//	glVertex2f(a->radius, 0);
+			//glEnd();
+			glPopMatrix();
+			glColor3f(1.0f, 0.0f, 0.0f);
+			glBegin(GL_POINTS);
+			glVertex2f(a->pos[0], a->pos[1]);
+			glEnd();
+			a = a->next;
+		}
+	}
+  //-------------------------------------------------------------------------
+  //Draw the ship
+  //Made by JP: changes the color of the ship based on the 
+  //amount of score you have
+  if (score.score < 1000) { //white, default 
+    g.ship.color[0] = 1;
+   }  
+  if (score.score >= 1000) { //red, first
+    g.ship.color[0] = 255, g.ship.color[1] = 0, g.ship.color[2] = 0;
+   }  
+  if (score.score >= 2000) { //green, second
+    g.ship.color[0] = 0, g.ship.color[1] = 255, g.ship.color[2] = 0;
+   }  
+  if (score.score >= 3000) { //yellow, third 
+    g.ship.color[0] = 255, g.ship.color[1] = 255, g.ship.color[2] = 0;
+   }  
+  if (score.score >= 4000) { //blue, third 
+    g.ship.color[0] = 0, g.ship.color[1] = 0, g.ship.color[2] = 255;
+ }
+	glColor3fv(g.ship.color); //gives ship its color
 	glPushMatrix();
 	glTranslatef(g.ship.pos[0], g.ship.pos[1], g.ship.pos[2]);
 	//float angle = atan2(ship.dir[1], ship.dir[0]);
@@ -910,34 +960,6 @@ void render()
 			glVertex2f(g.ship.pos[0]+xe,g.ship.pos[1]+ye);
 		}
 		glEnd();
-	}
-	//-------------------------------------------------------------------------
-	//Draw the asteroids
-	{
-		Asteroid *a = g.ahead;
-		while (a) {
-			//Log("draw asteroid...\n");
-			glColor3fv(a->color);
-			glPushMatrix();
-			glTranslatef(a->pos[0], a->pos[1], a->pos[2]);
-			glRotatef(a->angle, 0.0f, 0.0f, 1.0f);
-			glBegin(GL_LINE_LOOP);
-			//Log("%i verts\n",a->nverts);
-			for (int j=0; j<a->nverts; j++) {
-				glVertex2f(a->vert[j][0], a->vert[j][1]);
-			}
-			glEnd();
-			//glBegin(GL_LINES);
-			//	glVertex2f(0,   0);
-			//	glVertex2f(a->radius, 0);
-			//glEnd();
-			glPopMatrix();
-			glColor3f(1.0f, 0.0f, 0.0f);
-			glBegin(GL_POINTS);
-			glVertex2f(a->pos[0], a->pos[1]);
-			glEnd();
-			a = a->next;
-		}
 	}
 	//-------------------------------------------------------------------------
 	//Draw the bullets
