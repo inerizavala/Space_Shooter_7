@@ -3,6 +3,7 @@
 #ifndef group_h_
 #define group_h_
 
+/*
 class Enemy {
           public:
                   Vec pos;
@@ -13,6 +14,7 @@ class Enemy {
                   float color[3];
 		  Enemy();
   };
+*/
 
 class Credits {
 	public:
@@ -49,6 +51,17 @@ class Score {
 };
 
 void shipPos(double spos0, double spos1, int xres, int yres);
+class ShipStop{
+	public:
+        void easeX(Vec vel);
+        void easeY(Vec vel);
+};
+
+class Enemy{
+    public:
+	void enemy1(float e_xpos, float e_ypos, float s_xpos, float s_ypos);
+        //void pathing1(float xpos, float ypos);
+};
 
 int ewarrenFunction2(int num);
 
