@@ -29,15 +29,12 @@ void Movement::moveLeft(int angle, Vec vel)
 		Flt rad = ((angle+180.0) / 360.0f) * PI * 2.0;
 		//convert angle to a vector
 		Flt xdir = cos(rad);
-		Flt ydir = sin(rad);
-		vel[0] += xdir*0.2f;
-		vel[1] += ydir*0.2f;
-		Flt speed = sqrt(vel[0]*vel[0]+
-				vel[1]*vel[1]);
-		if (speed > 1.0f) {
-			speed = 1.0f;
+		vel[0] += xdir*0.4f;
+		//vel[1] += ydir*0.1f;
+		Flt speed = sqrt(vel[0]*vel[0]);
+		if (speed > 0.95f) {
+			speed = 0.95f;
 			vel[0] *= speed;
-			vel[1] *= speed;
 		}
 };
 
@@ -49,15 +46,11 @@ void Movement::moveRight(int angle, Vec vel)
 		Flt rad = ((angle+0.0) / 360.0f) * PI * 2.0;
 		//convert angle to a vector
 		Flt xdir = cos(rad);
-		Flt ydir = sin(rad);
-		vel[0] += xdir*0.2f;
-		vel[1] += ydir*0.2f;
-		Flt speed = sqrt(vel[0]*vel[0]+
-				vel[1]*vel[1]);
-		if (speed > 1.0f) {
-			speed = 1.0f;
+		vel[0] += xdir*0.4f;
+		Flt speed = sqrt(vel[0]*vel[0]);
+		if (speed > 0.95f) {
+			speed = 0.95f;
 			vel[0] *= speed;
-			vel[1] *= speed;
 		}
 };
 
@@ -68,15 +61,12 @@ void Movement::moveUp(int angle, Vec vel)
 		//convert ship angle to radians
 		Flt rad = ((angle+90.0) / 360.0f) * PI * 2.0;
 		//convert angle to a vector
-		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.2f;
-		vel[1] += ydir*0.2f;
-		Flt speed = sqrt(vel[0]*vel[0]+
+		vel[1] += ydir*0.4f;
+		Flt speed = sqrt(/*vel[0]*vel[0]+*/
 				vel[1]*vel[1]);
-		if (speed > 1.0f) {
-			speed = 1.0f;
-			vel[0] *= speed;
+		if (speed > 0.95f) {
+			speed = 0.95f;
 			vel[1] *= speed;
 		}
 };
@@ -88,15 +78,11 @@ void Movement::moveDown(int angle, Vec vel)
 		//convert ship angle to radians
 		Flt rad = ((angle+270.0) / 360.0f) * PI * 2.0;
 		//convert angle to a vector
-		Flt xdir = cos(rad);
 		Flt ydir = sin(rad);
-		vel[0] += xdir*0.2f;
-		vel[1] += ydir*0.2f;
-		Flt speed = sqrt(vel[0]*vel[0]+
-				vel[1]*vel[1]);
-		if (speed > 1.0f) {
-			speed = 1.0f;
-			vel[0] *= speed;
+		vel[1] += ydir*0.4f;
+		Flt speed = sqrt(vel[1]*vel[1]);
+		if (speed > 0.95f) {
+			speed = 0.95f;
 			vel[1] *= speed;
 		}
 };

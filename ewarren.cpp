@@ -6,7 +6,7 @@
 #include "defs.h"
 #include "group.h"
 #include "fonts.h"
-
+/*
 Enemy::Enemy() 
 {
 	pos[0] = 0.0f;	//(Flt)(gl.xres/2);
@@ -18,7 +18,7 @@ Enemy::Enemy()
 	angle = 0.0;
 	color[0] = color[1] = color[2] = 1.0;
 }
-
+*/
 void Credits::showPage(int xres, int yres) 
 {
 	Rect r;
