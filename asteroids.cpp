@@ -29,6 +29,7 @@ Credits credits;
 Movement movement;
 Menu menu;
 Score score;
+Powerup powerup;
 //Test test;
 //inerizavala inerizavala;
 //defined types
@@ -51,7 +52,7 @@ const float timeslice = 1.0f;
 const float gravity = -0.2f;
 #define PI 3.141592653589793
 #define ALPHA 1
-const int MAX_BULLETS = 11;
+const int MAX_BULLETS = 3;
 const Flt MINIMUM_ASTEROID_SIZE = 60.0;
 
 //-----------------------------------------------------------------------------
@@ -152,7 +153,8 @@ public:
 public:
 	Game() {
 		ahead = NULL;
-		barr = new Bullet[MAX_BULLETS];
+		barr = new Bullet[powerup.NEW_MAX_BULLET];
+		//barr = new Bullet[MAX_BULLETS];
 		nasteroids = 0;
 		nbullets = 0;
 		mouseThrustOn = false;
@@ -541,6 +543,7 @@ int check_keys(XEvent *e)
 			menu.help_flag = !menu.help_flag;
 			break;
 		case XK_n:
+			powerup.max_bullet_flag = !powerup.max_bullet_flag;
 			break;
 		case XK_Down:
 			break;

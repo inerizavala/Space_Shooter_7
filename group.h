@@ -48,6 +48,12 @@ class Score {
     void changeShipColor(int score);
 };
 
+class Powerup {
+	public:
+		const int NEW_MAX_BULLET = 99;
+		int max_bullet_flag = 0;
+};
+
 void shipPos(double spos0, double spos1, int xres, int yres);
 
 int ewarrenFunction2(int num);

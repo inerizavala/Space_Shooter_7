@@ -52,8 +52,8 @@ void Score::increaseScore(int num)
 	score_flag = !score_flag;
 }
 
-//int NEW_MAX_BULLETS = 99;
-//int max_bullet_flag = 0;
+const int NEW_MAX_BULLETS = 99;
+int max_bullet_flag = 0;
 
 void ewarrenFunction(int number) 
 {
