@@ -54,6 +54,11 @@ class Powerup {
 	public:
 		const int NEW_MAX_BULLET = 99;
 		int max_bullet_flag = 0;
+		int bullet_num = 0;
+		int timeDifference = 0;
+		void setBulletMax(int max);
+		Powerup(int max);
+		void flagSet();
 };
 
 void shipPos(double spos0, double spos1, int xres, int yres);
