@@ -29,7 +29,6 @@ Credits credits;
 Movement movement;
 Menu menu;
 Score score;
-Powerup powerup;
 ShipStop shipStop;
 Enemy enemy;
 
@@ -57,6 +56,8 @@ const float gravity = -0.2f;
 #define ALPHA 1
 const int MAX_BULLETS = 5;
 const Flt MINIMUM_ASTEROID_SIZE = 60.0;
+
+Powerup powerup(MAX_BULLETS);
 
 //-----------------------------------------------------------------------------
 //Setup timers
@@ -500,7 +501,8 @@ int check_keys(XEvent *e)
 			menu.help_flag = !menu.help_flag;
 			break;
 		case XK_n:
-			powerup.max_bullet_flag = !powerup.max_bullet_flag;
+			powerup.flagSet();
+			//powerup.max_bullet_flag = !powerup.max_bullet_flag;
 			break;
 		case XK_Down:
 			break;
@@ -756,7 +758,7 @@ void physics()
         double ts = timeDiff(&g.bulletTimer, &bt);
         if (ts > 0.1) {
             timeCopy(&g.bulletTimer, &bt);
-            if (g.nbullets < MAX_BULLETS) {
+            if (g.nbullets < powerup.bullet_num) {
                 //shoot a bullet...
                 //Bullet *b = new Bullet;
                 Bullet *b = &g.barr[g.nbullets];
@@ -836,6 +838,14 @@ void render()
             } else {
                 ggprint8b(&r, 16, 0x00ffff00, "SCORE: %i", score.score);
             }
+	    if (powerup.max_bullet_flag) {
+		Rect r1;
+         	r1.bot = gl.yres - 50;
+         	r1.left = gl.xres / 2;
+         	r1.center = 1;
+         	ggprint8b(&r1, 16, 0x00ffffff, "!! UNLIMITED BULLETS !!");
+         	//ggprint8b(&r1, 16, 0x00ffffff, "TIME: %i", powerup.timeDifference);
+	    }
         }
         //---------------------------------------------------------------------
         //Draw the asteroids
