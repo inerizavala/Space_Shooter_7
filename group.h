@@ -31,6 +31,12 @@ class Movement {
 
 };
 
+class Background {
+  public:
+    void drawBG();
+    
+};
+
 class Menu {
     public:
         int credits_flag = 0;
