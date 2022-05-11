@@ -27,6 +27,7 @@
 
 Credits credits;
 Movement movement;
+Background bg;
 Menu menu;
 Score score;
 ShipStop shipStop;
@@ -833,6 +834,7 @@ void render()
             ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
             ggprint8b(&r, 16, 0x00ff0000, "BULLETS: %i", g.nbullets);
             ggprint8b(&r, 16, 0x00ff0000, "ASTEROIDS: %i", g.nasteroids);
+            bg.drawBG();
             if (!score.score_flag) { //ew
                 ggprint8b(&r, 16, 0x00ff0000, "SCORE: %i", score.score);
             } else {
@@ -858,6 +860,7 @@ void render()
                 glPushMatrix();
                 glTranslatef(a->pos[0], a->pos[1], a->pos[2]);
                 glRotatef(a->angle, 0.0f, 0.0f, 1.0f);
+                glPointSize(1);
                 glBegin(GL_LINE_LOOP);
                 //Log("%i verts\n",a->nverts);
                 for (int j=0; j<a->nverts; j++) {
@@ -913,6 +916,7 @@ void render()
         glVertex2f( 12.0f, -10.0f);
         glEnd();
         glColor3f(1.0f, 0.0f, 0.0f);
+        glPointSize(1);
         glBegin(GL_POINTS);
         glVertex2f(0.0f, 0.0f);
         glEnd();
@@ -944,6 +948,7 @@ void render()
             Bullet *b = &g.barr[i];
             //Log("draw bullet...\n");
             glColor3f(1.0, 1.0, 1.0);
+            glPointSize(1);
             glBegin(GL_POINTS);
             glVertex2f(b->pos[0],      b->pos[1]);
             glVertex2f(b->pos[0]-1.0f, b->pos[1]);
