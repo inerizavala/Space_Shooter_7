@@ -17,74 +17,89 @@
 #include <ctime>
 #include <cmath>
 
-
 #define PI 3.141592653589793
 
 using namespace std;
 
+void Background::drawBG()
+{
+  srand(time(NULL));
+  glPointSize(3);
+  glBegin(GL_POINTS);
+  glColor3f(255.0, 255.0, 0.0);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glVertex2f(rand()%800, rand()%800);
+  glEnd();
+  
+};
+
 void Movement::moveLeft(int angle, Vec vel) 
 {
-		//apply thrust
-		//convert ship angle to radians
-		Flt rad = ((angle+180.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt xdir = cos(rad);
-		vel[0] += xdir*0.4f;
-		//vel[1] += ydir*0.1f;
-		Flt speed = sqrt(vel[0]*vel[0]);
-		if (speed > 0.95f) {
-			speed = 0.95f;
-			vel[0] *= speed;
-		}
+  //convert ship angle to radians
+  Flt rad = ((angle+180.0) / 360.0f) * PI * 2.0;
+  //convert angle to a vector
+  Flt xdir = cos(rad);
+  vel[0] += xdir*0.4f;
+  Flt speed = sqrt(vel[0]*vel[0]);
+  if (speed > 0.95f) {
+    speed = 0.95f;
+    vel[0] *= speed;
+  }
 };
 
 
 void Movement::moveRight(int angle, Vec vel) 
 {
-		//apply thrust
-		//convert ship angle to radians
-		Flt rad = ((angle+0.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt xdir = cos(rad);
-		vel[0] += xdir*0.4f;
-		Flt speed = sqrt(vel[0]*vel[0]);
-		if (speed > 0.95f) {
-			speed = 0.95f;
-			vel[0] *= speed;
-		}
+  //convert ship angle to radians
+  Flt rad = ((angle+0.0) / 360.0f) * PI * 2.0;
+  //convert angle to a vector
+  Flt xdir = cos(rad);
+  vel[0] += xdir*0.4f;
+  Flt speed = sqrt(vel[0]*vel[0]);
+  if (speed > 0.95f) {
+    speed = 0.95f;
+    vel[0] *= speed;
+  }
 };
 
 
 void Movement::moveUp(int angle, Vec vel) 
 {
-		//apply thrust
-		//convert ship angle to radians
-		Flt rad = ((angle+90.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt ydir = sin(rad);
-		vel[1] += ydir*0.4f;
-		Flt speed = sqrt(/*vel[0]*vel[0]+*/
-				vel[1]*vel[1]);
-		if (speed > 0.95f) {
-			speed = 0.95f;
-			vel[1] *= speed;
-		}
+  //convert ship angle to radians
+  Flt rad = ((angle+90.0) / 360.0f) * PI * 2.0;
+  //convert angle to a vector
+  Flt ydir = sin(rad);
+  vel[1] += ydir*0.4f;
+  Flt speed = sqrt(/*vel[0]*vel[0]+*/
+    vel[1]*vel[1]);
+  if (speed > 0.95f) {
+    speed = 0.95f;
+    vel[1] *= speed;
+  }
 };
 
 
 void Movement::moveDown(int angle, Vec vel) 
 {
-		//apply thrust
-		//convert ship angle to radians
-		Flt rad = ((angle+270.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt ydir = sin(rad);
-		vel[1] += ydir*0.4f;
-		Flt speed = sqrt(vel[1]*vel[1]);
-		if (speed > 0.95f) {
-			speed = 0.95f;
-			vel[1] *= speed;
-		}
+  //convert ship angle to radians
+  Flt rad = ((angle+270.0) / 360.0f) * PI * 2.0;
+  //convert angle to a vector
+  Flt ydir = sin(rad);
+  vel[1] += ydir*0.4f;
+  Flt speed = sqrt(vel[1]*vel[1]);
+  if (speed > 0.95f) {
+    speed = 0.95f;
+    vel[1] *= speed;
+  }
 };
 
 /*
