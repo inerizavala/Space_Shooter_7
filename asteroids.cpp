@@ -690,6 +690,7 @@ void physics()
                     //break it into pieces.
                     Asteroid *ta = a;
                     buildAsteroidFragment(ta, a);
+		    score.increaseScore(25);
                     int r = rand()%10+5;
                     for (int k=0; k<r; k++) {
                         //get the next asteroid position in the array
@@ -710,6 +711,7 @@ void physics()
                     //delete the asteroid and bullet
                     Asteroid *savea = a->next;
                     deleteAsteroid(&g, a);
+		    score.increaseScore(50);
                     a = savea;
                     g.nasteroids--;
                 }
