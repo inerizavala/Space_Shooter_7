@@ -76,7 +76,8 @@ class ShipStop{
 
 class Enemy{
     public:
-	void enemy1(float e_xpos, float e_ypos, float s_xpos, float s_ypos);
+	void enemy1(float xres, float yres, float s_xpos, float s_ypos, 
+			float *color);
         //void pathing1(float xpos, float ypos);
 };
 

@@ -964,11 +964,12 @@ void render()
             glVertex2f(b->pos[0]+1.0f, b->pos[1]+1.0f);
             glEnd();
         }
-	//Implemented by Irvin Neri
+	    //Implemented by Irvin Neri
         //Draw enemy
-        float epos[2] = {(11*((float)gl.xres))/16, ((float)gl.yres)-50};
+        //float epos[2] = {(11*((float)gl.xres))/16, ((float)gl.yres)-50};
         //enemy.enemy1(((float)gl.xres)/2 , ((float)gl.yres)/2);
-        enemy.enemy1(epos[0], epos[1], g.ship.pos[0], g.ship.pos[1]);
+        enemy.enemy1((float)gl.xres, (float)gl.yres, 
+			g.ship.pos[0], g.ship.pos[1], g.ship.color);
         //enemy.pathing1(epos[0], epos[1]);
     }
 }

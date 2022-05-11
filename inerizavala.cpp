@@ -7,6 +7,7 @@
 #include "defs.h"
 #include "group.h"
 #include <iostream>
+//#include <time.h>
 using namespace std;
 
 #define PI 3.141592653589793
@@ -59,26 +60,34 @@ void ShipStop::easeY(Vec vel)
     }
 };
 
-void Enemy::enemy1(float e_xpos, float e_ypos, float s_xpos, float s_ypos){
-    //if(health >= 0){
-        float theta;
-        glColor3f(1,0,0);
-        glBegin(GL_POLYGON);
+void Enemy::enemy1(float xres, float yres, float s_xpos, float s_ypos, 
+		float *color)
+{  
+    float theta, e_xpos, e_ypos;
+    //float tmp[3] = {color[0], color[1], color[3]};
 
-        for(int i=0; i < 360; i++){
-            theta =i*PI/180;
-            glVertex2f(e_xpos + 20*cos(theta), e_ypos + 20*sin(theta));
-        }
-        glEnd();
-        if((s_xpos+10) >= (e_xpos-20) && (s_xpos-10) <= (e_xpos+20)){
-            if((s_ypos+15) >= (e_ypos-20) && (s_ypos-15) <= (e_ypos+20)){
-                printf("In enemy");
-            }
-        }
-    //}
+    e_xpos = xres/2;
+    e_ypos = yres - yres/8;
 
+    glColor3f(1,0,0);
+    glBegin(GL_POLYGON);
 
-}
+    for(int i=0; i < 360; i++){
+        theta =i*PI/180;
+        glVertex2f(e_xpos + 20*cos(theta), e_ypos + 20*sin(theta));
+    }
+    glEnd();
+    if((s_xpos+10) >= (e_xpos-20) && (s_xpos-10) <= (e_xpos+20) 
+		    && (s_ypos+15) >= (e_ypos-20) && (s_ypos-15) <= (e_ypos+20)){
+	    color[0] = 255;
+	    color[1] = 0;
+	    color[2] = 0;
+    } /*else {
+	    color[0] = tmp[0];
+		color[1] = tmp[1];
+		color[2] = tmp[2];
+    }*/	
+};
 /*
 void Enemy::e1Health(){
 	int health = 5;
