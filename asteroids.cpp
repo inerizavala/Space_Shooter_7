@@ -801,6 +801,7 @@ void physics()
 
 void render()
 {
+    //menu displays by B.T.
     if (menu.credits_flag){
         glClear(GL_COLOR_BUFFER_BIT);
         menu.showCredits(gl.xres,gl.yres);
